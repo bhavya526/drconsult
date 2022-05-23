@@ -76,9 +76,9 @@
             
             <li class="nav-item">
               <?php
-              if(isset($_SESSION['log']))
+              if(isset($_SESSION['dlog']))
               {
-                $logornot=$_SESSION["log"];
+                $logornot=$_SESSION["dlog"];
                 if($logornot=="yes")
                 {
                   echo "<a class='btn btn-primary ml-lg-3' href='logout.php'>Logout</a>";
@@ -95,23 +95,50 @@
       </div> <!-- .container -->
     </nav>
   </header>
-
- 
+  
+ <?php
+      $iidd=$_SESSION["ddii"];
+      $con=mysqli_connect("localhost","root","","drconsult");
+      $r=mysqli_query($con,"select * from dregister where regid='$iidd' ");
+ ?>
 
   
 
     <div class="page-section pb-0">
       <div class="container">
         <div class="row align-items-center">
-        <div class="col-lg-6 wow fadeInLeft" data-wow-delay="400ms">
-            <div class="img-place custom-img-1">
-              <img src="../assets/img/dr2.jpg" alt="" >
-            </div>
+        <div class="col-lg-6 wow" data-wow-delay="400ms">
+             <a href="">
+               <div class="img-place custom-img-1" style="border:1px solid black;height:15.625em;width:15.625em;border-radius:50%">
+                    <?php
+                        
+                         if($row=mysqli_fetch_array($r))
+                         {
+                           if(empty($row[7]))
+                           {
+                             echo "<form method='POST' action='transferdimage'>
+                                     <input type='submit' value='Upload Image'>
+                                     <input type='file' value='Choose Image' name='img' style='color:transparent;'>";
+                                    
+                           }
+                           else
+                           {
+                             echo "<img src='$row[7]'>";
+                           } 
+
+                         }
+                     ?>
+               </div>
+               </a>
           </div>
-          <div class="col-lg-6 py-3 wow fadeInUp">
-            <h1>Welcome to Your Health <br> Center</h1>
-            <p class="text-grey mb-4">Our site aims to make quality health care affordable and accessible for everyone. It holds a wealth of information about the services and programs we offer!</p>
-            <a href="about.html" class="btn btn-primary">Learn More</a>
+          <div class="col-lg-6 py-3 wow ">
+            <h1>My Profile</h1>
+            <?php
+                 echo "$row[1]<br>";
+                 echo "ID: $row[2]<br>";
+                 echo "Contact no. : $row[5]<br><br>";
+                 echo "<B>$row[4]</B><br>";
+            ?>
           </div>
           
         </div>
@@ -119,205 +146,43 @@
     </div> <!-- .bg-light -->
   </div> <!-- .bg-light -->
 
-  <div class="page-section">
-    <div class="container">
-      <h1 class="text-center mb-5 wow fadeInUp">Our Doctors</h1>
-
-      <div class="owl-carousel wow fadeInUp" id="doctorSlideshow">
-        <div class="item">
-          <div class="card-doctor">
-            <div class="header">
-              <img src="../assets/img/doctors/doctor_1.jpg" alt="">
-              <div class="meta">
-                <a href="#"><span class="mai-call"></span></a>
-                <a href="#"><span class="mai-logo-whatsapp"></span></a>
-              </div>
-            </div>
-            <div class="body">
-              <p class="text-xl mb-0">Dr. Stein Albert</p>
-              <span class="text-sm text-grey">Cardiology</span>
-            </div>
-          </div>
-        </div>
-        <div class="item">
-          <div class="card-doctor">
-            <div class="header">
-              <img src="../assets/img/doctors/doctor_2.jpg" alt="">
-              <div class="meta">
-                <a href="#"><span class="mai-call"></span></a>
-                <a href="#"><span class="mai-logo-whatsapp"></span></a>
-              </div>
-            </div>
-            <div class="body">
-              <p class="text-xl mb-0">Dr. Alexa Melvin</p>
-              <span class="text-sm text-grey">Dental</span>
-            </div>
-          </div>
-        </div>
-        <div class="item">
-          <div class="card-doctor">
-            <div class="header">
-              <img src="../assets/img/doctors/doctor_3.jpg" alt="">
-              <div class="meta">
-                <a href="#"><span class="mai-call"></span></a>
-                <a href="#"><span class="mai-logo-whatsapp"></span></a>
-              </div>
-            </div>
-            <div class="body">
-              <p class="text-xl mb-0">Dr. Rebecca Steffany</p>
-              <span class="text-sm text-grey">General Health</span>
-            </div>
-          </div>
-        </div>
-        <div class="item">
-          <div class="card-doctor">
-            <div class="header">
-              <img src="../assets/img/doctors/doctor_3.jpg" alt="">
-              <div class="meta">
-                <a href="#"><span class="mai-call"></span></a>
-                <a href="#"><span class="mai-logo-whatsapp"></span></a>
-              </div>
-            </div>
-            <div class="body">
-              <p class="text-xl mb-0">Dr. Rebecca Steffany</p>
-              <span class="text-sm text-grey">General Health</span>
-            </div>
-          </div>
-        </div>
-        <div class="item">
-          <div class="card-doctor">
-            <div class="header">
-              <img src="../assets/img/doctors/doctor_3.jpg" alt="">
-              <div class="meta">
-                <a href="#"><span class="mai-call"></span></a>
-                <a href="#"><span class="mai-logo-whatsapp"></span></a>
-              </div>
-            </div>
-            <div class="body">
-              <p class="text-xl mb-0">Dr. Rebecca Steffany</p>
-              <span class="text-sm text-grey">General Health</span>
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
-  </div>
+  
 
   <div class="page-section bg-light">
     <div class="container">
-      <div class="text-center wow fadeInUp">
-      <h1>Top articles</h1>
-      <span>  Health articles that keep you informed about good health practices and achieve your goals.
-                </span>
-      <div>
-      <div class="row mt-5">
-        
-        <div class="col-lg-6 py-2 wow zoomIn">
-          <div class="card-blog">
-            <div class="header">
-              
-              <a href="blog-details.html" class="post-thumb">
-                <img src="../assets/img/blog/treat.jpg" alt="">
-              </a>
-            </div>
-            <div class="body">
-            <span style='color:blue'>Your health</span><br> 
-              <h5 class="post-title"><a href="blog-details.html">Health myths you must be aware of!</a></h5>
-              <div class="site-info">
-                
-                <div class="avatar mr-2">
-                  
-                  <span>Dr. Alisha Anum</span>
-                </div>
-                
-              </div>
-            </div>
-          </div>
-        </div>
-        <div class="col-lg-6 py-2 wow zoomIn">
-          <div class="card-blog">
-            <div class="header">
-              
-              <a href="blog-details.html" class="post-thumb">
-                <img src="../assets/img/blog/food1.jpg" alt="">
-              </a>
-              </div>
-            <div class="body">
-            <span style='color:blue'>Diet</span><br> 
-              <h5 class="post-title"><a href="blog-details.html">Health foods that helps you be fit!</a></h5>
-              <div class="site-info">
-                
-                <div class="avatar mr-2">
-                  
-                  <span>Dr. Alisha Anum</span>
-                </div>
-                
-              </div>
-            </div>
-          </div>
-        </div>
-
-        <div class="col-12 text-center mt-4 wow zoomIn">
-          <a href="article.php" class="btn btn-primary">Read More</a>
-        </div>
-
+      <div class=" wow ">
+      <h1 class=" wow ">Orthopedics</h1>
       </div>
+      <?php
+              if($row[4]=="Orthopedic")
+              {
+                echo "Orthopedics is the medical field that focuses on diseases and conditions that affect your musculoskeletal system. This includes your:
+
+                <br>bones
+                <br>muscles
+                <br>ligaments and tendons
+                <br>joints
+                <br>nerves<br>
+                People often visit an orthopedic doctor when they’re injured or when they have a chronic condition, such as arthritis or lower back pain.
+                
+                <B><H4>What do orthopedic doctors do?</H4></B>
+  
+                Orthopedic doctors, often referred to as orthopedic surgeons, focus on helping you with musculoskeletal issues. Their duties include:
+                <br>
+                diagnosing and treating conditions that affect your musculoskeletal system
+                assisting with rehabilitation, which helps you regain movement, strength, range of motion, and flexibility following an injury or surgery
+                forming strategies to prevent injury or to keep chronic conditions, such as arthritis, from worsening
+                While orthopedic doctors know about all parts of the musculoskeletal system, some choose to specialize further. Some subspecialty areas of orthopedics include:
+                <br><br>
+                spine<br>
+                hip and knee<br>";
+              }
+          ?>
     </div>
   </div> <!-- .page-section -->
-                </div>
-  <div class="page-section">
-    <div class="container">
-      <h1 class="text-center wow fadeInUp">Make an Appointment</h1>
-
-      <form class="main-form">
-        <div class="row mt-5 ">
-          <div class="col-12 col-sm-6 py-2 wow fadeInLeft">
-            <input type="text" class="form-control" placeholder="Full name">
-          </div>
-          <div class="col-12 col-sm-6 py-2 wow fadeInRight">
-            <input type="text" class="form-control" placeholder="Email address..">
-          </div>
-          <div class="col-12 col-sm-6 py-2 wow fadeInLeft" data-wow-delay="300ms">
-            <input type="date" class="form-control">
-          </div>
-          <div class="col-12 col-sm-6 py-2 wow fadeInRight" data-wow-delay="300ms">
-            <select name="departement" id="departement" class="custom-select">
-              <option value="general">General Health</option>
-              <option value="cardiology">Cardiology</option>
-              <option value="dental">Dental</option>
-              <option value="neurology">Neurology</option>
-              <option value="orthopaedics">Orthopaedics</option>
-            </select>
-          </div>
-          <div class="col-12 py-2 wow fadeInUp" data-wow-delay="300ms">
-            <input type="text" class="form-control" placeholder="Number..">
-          </div>
-          <div class="col-12 py-2 wow fadeInUp" data-wow-delay="300ms">
-            <textarea name="message" id="message" class="form-control" rows="6" placeholder="Enter message.."></textarea>
-          </div>
-        </div>
-
-        <button type="submit" class="btn btn-primary mt-3 wow zoomIn">Submit Request</button>
-      </form>
-    </div>
-  </div> <!-- .page-section -->
-
-  <div class="page-section banner-home bg-image" style="background-image: url(../assets/img/banner-pattern.svg);">
-    <div class="container py-5 py-lg-0">
-      <div class="row align-items-center">
-        <div class="col-lg-4 wow zoomIn">
-          <div class="img-banner d-none d-lg-block">
-            <img src="../assets/img/mobile_app.png" alt="">
-          </div>
-        </div>
-        <div class="col-lg-8 wow fadeInRight">
-          <h1 class="font-weight-normal mb-3">Get easy access of all features using One Health Application</h1>
-          <a href="#"><img src="../assets/img/google_play.svg" alt=""></a>
-          <a href="#" class="ml-2"><img src="../assets/img/app_store.svg" alt=""></a>
-        </div>
-      </div>
-    </div>
-  </div> <!-- .banner-home -->
+                
+  
+  
 
   <footer class="page-footer">
     <div class="container">
