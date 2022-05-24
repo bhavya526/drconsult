@@ -124,9 +124,9 @@
           <div class="card-blog">
             <div class="header">
               <div class="post-category">
-                <a href="#">Medicines</a>
+                <a href="buymedi.php">Medicines</a>
               </div>
-              <a href="blog-details.html" class="post-thumb">
+              <a href="buymedi.php" class="post-thumb">
                 <img src="../assets/img/blog/medi2.jpg" alt="">
               </a>
             </div>

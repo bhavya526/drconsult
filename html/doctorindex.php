@@ -114,17 +114,7 @@
                         
                          if($row=mysqli_fetch_array($r))
                          {
-                           if(empty($row[7]))
-                           {
-                             echo "<form method='POST' action='transferdimage'>
-                                     <input type='submit' value='Upload Image'>
-                                     <input type='file' value='Choose Image' name='img' style='color:transparent;'>";
-                                    
-                           }
-                           else
-                           {
-                             echo "<img src='$row[7]'>";
-                           } 
+                          echo "<img src='../docimageregistered/$row[7]'>";
 
                          }
                      ?>

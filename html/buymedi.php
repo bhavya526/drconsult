@@ -1,6 +1,3 @@
-<?php
-session_start();
-?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -23,10 +20,12 @@ session_start();
 
   <link rel="stylesheet" href="../assets/css/theme.css">
 </head>
-<div class="back-to-top"></div>
+<body>
 
+  <!-- Back to top button -->
+  <div class="back-to-top"></div>
 
-<header>
+  <header>
     <div class="topbar">
       <div class="container">
         <div class="row">
@@ -53,7 +52,14 @@ session_start();
       <div class="container">
         <a class="navbar-brand" href="#"><span class="text-primary">One</span>-Health</a>
 
-        
+        <form action="#">
+          <div class="input-group input-navbar">
+            <div class="input-group-prepend">
+              <span class="input-group-text" id="icon-addon1"><span class="mai-search"></span></span>
+            </div>
+            <input type="text" class="form-control" placeholder="Enter keyword.." aria-label="Username" aria-describedby="icon-addon1">
+          </div>
+        </form>
 
         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupport" aria-controls="navbarSupport" aria-expanded="false" aria-label="Toggle navigation">
           <span class="navbar-toggler-icon"></span>
@@ -70,131 +76,87 @@ session_start();
             <li class="nav-item">
               <a class="nav-link" href="doctors.html">Video Consulation</a>
             </li>
-            <li class="nav-item">
+            <li class="nav-item active">
               <a class="nav-link" href="medicine.php">Medicines</a>
             </li>
             <li class="nav-item">
               <a class="nav-link" href="labtest.php">Lab Tests</a>
             </li>
-           
+            <li class="nav-item">
+              <a class="btn btn-primary ml-lg-3" href="login.php">Login / Register</a>
+            </li>
           </ul>
         </div> <!-- .navbar-collapse -->
       </div> <!-- .container -->
     </nav>
   </header>
-<section class="" style="background-color: #a8e4a0; ">
-  <div class="container py-5 h-100">
- 
-    <div class="row d-flex justify-content-center align-items-center h-100">
-    
-      <div class="col col-xl-10">
-          <div class="card align-items-center " style="background-color: #a8e4a0;border:none">
-          <nav class="navbar navbar-default">
-  <div class="container-fluid">
-    <div class="navbar-header">
-    <a href="login.php" style="color:black;font-size:16px;">Patient</a>
-             &nbsp &nbsp 
-            <a href="dlogin.php" style="color:black;font-size:16px;font-weight:bold">Doctor</a>
-    </div>
-    
-  </div>
-</nav>
-           <!-- -->
-          </div>
-        <div class="card" style="border-radius: 1rem; ">
-          <div class="row g-0">
-            <div class="col-md-6 col-lg-5 d-none d-md-block">
-              <img src="../assets/img/stethoscope-in-heart-shape-ktsdesign.jpg"
-                alt='login form' class='img-fluid' style='border-radius: 1rem 0 0 1rem; margin-top:64px;margin-left:30px' />
-            </div>
-            <div class="col-md-6 col-lg-7 d-flex align-items-center">
-              <div class="card-body p-4 p-lg-5 text-black">
 
-              <form method="POST" action="dregistervalid.php" enctype="multipart/form-data">
-
-<div class="d-flex align-items-center mb-3 pb-1">
-  <i class="fas fa-cubes fa-2x me-3" style="color: #ff6219;"></i>
-  <span class="h1 fw-bold mb-0">Register</span>
-</div>
-
-<h5 class="fw-normal mb-3 pb-3" style="letter-spacing: 1px;">Register account</h5>
-
-<div class="form-outline mb-4">
-  <input type="text" id="form2Example17" class="form-control form-control-lg" name="nm" value="">
-  <label class="form-label" for="form2Example17" style="font-size:13px">Name</label>
-</div>
-
-<div class="form-outline mb-4">
-  <input type="text" id="form2Example17" class="form-control form-control-lg" name="reg1" value="">
-  <label class="form-label" for="form2Example17" style="font-size:13px">Registeration Number</label>
-</div>
-
-<div class="form-outline mb-4">
-  <input type="number" id="form2Example17" class="form-control form-control-lg" name="yr" value="">
-  <label class="form-label" for="form2Example17" style="font-size:13px">Year of registeration</label>
-</div>
-
-<div class="form-outline mb-4">
-  <input type="text" id="form2Example17" class="form-control form-control-lg" name="sp" value="">
-  <label class="form-label" for="form2Example17" style="font-size:13px">Specialization</label>
-</div>
-
-<div class="form-outline mb-4">
-  <input type="mail" id="form2Example17" class="form-control form-control-lg" name="mail" />
-  <label class="form-label" for="form2Example17" style="font-size:13px">Email Id</label>
-</div>
-
-<div class="form-outline mb-4">
-  <input type="number" id="form2Example17" class="form-control form-control-lg" name="ph" value="">
-  <label class="form-label" for="form2Example17" style="font-size:13px">Phone number</label>
-</div>
-
-<div class="form-outline mb-4">
-  <input type="password" id="form2Example27" class="form-control form-control-lg" name="pwd" />
-  <label class="form-label" for="form2Example27" style="font-size:13px">Password</label>
-</div>
-
-<div class="form-outline mb-4">
-  <input type="password" id="form2Example27" class="form-control form-control-lg" name="cpwd" required />
-  <label class="form-label" for="form2Example27" style="font-size:13px">Confirm Password</label>
-  <?php
-  $pageWasRefreshed = isset($_SERVER['HTTP_CACHE_CONTROL']) && $_SERVER['HTTP_CACHE_CONTROL'] === 'max-age=0'; 
-  if($pageWasRefreshed ) 
-  { 
-    session_destroy();
-   }
-  if(isset($_SESSION["errd"]))
-			echo  "<span style='color:red;font-weight:bold; font-size:0.8em'>",$_SESSION["errd"],"</span>";
-   ?>
-</div>
-
-<div class="form-outline mb-4">
-  <input type="file" id="form2Example27" class="form-control form-control-lg" name="imgd" />
-  <label class="form-label" for="form2Example27" style="font-size:13px">Upload Image</label>
-</div>
-
-
-<div class="pt-1 mb-4">
-    <input type="submit" class="btn btn-dark btn-lg btn-block" value="REGISTER">
-
-</div>
-
-<a class="small text-muted" href="#!">Forgot password?</a>
-<p class="mb-5 pb-lg-2" style="color: #393f81;">Login here <a href="doctorlogin.php"
-    style="color: #393f81;">Register here</a></p>
-<a href="#!" class="small text-muted">Terms of use.</a>
-<a href="#!" class="small text-muted">Privacy policy</a>
-</form>
-
-              </div>
-            </div>
-          </div>
-        </div>
+  <div class="page-hero bg-image overlay-dark" style="background-image: url(../assets/img/med1.jpg); height:20%">
+    <div class="hero-section">
+      <div class="container text-center wow zoomIn">
+          <br>
+        <span class="subhead">Let's make it easy</span><br>
+        <span class="display-4" style="height:1em;">Buy Medicines</span>
+        <br>
+        <br>
+        <a href="#" class="btn "></a>
       </div>
     </div>
   </div>
-</section>
-<footer class="page-footer">
+  
+  <?php
+      $iidd=$_SESSION["ddii"];
+      $con=mysqli_connect("localhost","root","","drconsult");
+      $r=mysqli_query($con,"select * from medicines ");
+      $i=1;
+
+       while(i!=3)
+       {
+             echo "<div class='page-section pb-0'>
+             <div class='container'>
+               <div class='row align-items-center'>
+               <div class='col-lg-6 wow' data-wow-delay='400ms'>
+                    <a href=''>
+                      <div class='img-place custom-img-1' style='border:1px solid black;height:15.625em;width:15.625em;border-radius:50%'>";
+                      if($row=mysqli_fetch_array($r))
+                      {
+                       echo "<img src='../docimageregistered/$row[7]'>";
+
+                      }
+                echo "</div>
+                     </a>
+                </div>";
+                      
+         }
+
+
+ ?>
+
+  
+
+    
+                    <?php
+                        
+                         
+                     ?>
+               
+          <div class="col-lg-6 py-3 wow ">
+            <h1>My Profile</h1>
+            <?php
+                 echo "$row[1]<br>";
+                 echo "ID: $row[2]<br>";
+                 echo "Contact no. : $row[5]<br><br>";
+                 echo "<B>$row[4]</B><br>";
+            ?>
+          </div>
+          
+        </div>
+      </div>
+    </div> <!-- .bg-light -->
+  </div> <!-- .bg-light -->
+
+  
+  <footer class="page-footer">
     <div class="container">
       <div class="row px-md-3">
         <div class="col-sm-6 col-lg-3 py-3">

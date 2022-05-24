@@ -14,7 +14,10 @@ session_start();
       $pwd=$_POST["pwd"];
       $cpwd=$_POST["cpwd"];
       
-     
+      move_uploaded_file($_FILES["imgd"]["tmp_name"],"../docimageregistered/".$_FILES["imgd"]["name"]);
+      $pic=$_FILES["imgd"]["name"];
+      
+      
 
       if($cpwd!=$pwd)
 			{
@@ -35,7 +38,7 @@ session_start();
                 {
                     if($row[1]==$nm && $row[2]==$reg1 && $row[3]==$sp && $row[4]==$yr)
                     {
-                      $rr=mysqli_query($con,"insert into dregister(Name,regid,regy,Specialization,pno,password) values('$nm','$reg1','$yr','$sp','$ph','$pwd') ");
+                      $rr=mysqli_query($con,"insert into dregister(Name,regid,regy,Specialization,pno,password,photo) values('$nm','$reg1','$yr','$sp','$ph','$pwd','$pic') ");
                       if($rr)
                       {
                          header("location:doctorlogin.php");
